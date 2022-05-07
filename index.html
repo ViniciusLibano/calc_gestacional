@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Gestacional</title>
+</head>
+<body>
+    <main>
+        <form>
+            <div>
+                <label for="DUM">Data da Última Menstruação (DUM)</label><br>
+                <input type="date" name="DUM">
+            </div>
+
+            <div>
+                <label for="">Sabe o ciclo?</label><br>
+                <input type="radio" name="ciclo" id="csim" value="csim"><label for="csim">Sim</label>
+                <input type="radio" name="ciclo" id="cnao" value="cnao" checked><label for="cnao">Não</label>
+            </div>
+
+            <div style="display: none" id="cicloM">
+                <label for="cicloValor">Ciclo Menstrual</label>
+                <input type="text" name="" pattern="[0-9]+">
+            </div>
+        </form>
+        <div class="btn">
+            <button>Calcular</button>
+            <button onclick="window.location.reload()">Voltar</button>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

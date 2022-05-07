@@ -1,0 +1,45 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    margin-top: 2%;
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: antiquewhite;
+    padding: 10px;
+}
+
+main * {
+    margin-bottom: 5px;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
+form > div input[type="date"], form > div input[type="text"], form > div label{
+    width: 100%;
+}
+
+.btn {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn button {
+    width: 25%;
+}
