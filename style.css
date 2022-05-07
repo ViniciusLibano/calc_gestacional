@@ -1,6 +1,8 @@
 * {
     padding: 0;
     margin: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -16,7 +18,13 @@ main {
     justify-content: center;
     flex-direction: column;
     background-color: antiquewhite;
+    border: 1px solid black;
+    border-radius: 5px;
     padding: 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
 }
 
 main * {
@@ -42,4 +50,8 @@ form > div input[type="date"], form > div input[type="text"], form > div label{
 
 .btn button {
     width: 25%;
+}
+
+.bottom-line {
+    border-bottom: 1px solid black;
 }

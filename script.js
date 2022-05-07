@@ -1,7 +1,7 @@
 var form = document.querySelector('form');
 var formData = new FormData(form);
 
-function showCiclo() {
+/* function showCiclo() {
     let ciclo = document.querySelector('input[type="radio"]');
     let divCiclo = document.getElementById('cicloM');
 
@@ -11,7 +11,7 @@ function showCiclo() {
     else {
         divCiclo.style.display = "none";
     }
-}
+} */
 
 function calc() {
     let resultado = document.querySelectorAll('p');
@@ -29,8 +29,8 @@ function calc() {
         window.alert("Data em branco");
     }
     else if ((!resultado[0]) || (resultado[0].innerText != dumValue)) {
-        divContent.insertAdjacentHTML('beforeend', `<p>${dumValue}</p><p>Idade Gestacional: ${idadeGestacionalSemana} Semana(s) e ${idadeGestacionalDia} Dia(s)</p>`);
-        console.log(`${dumDate.getTime()} - ${today.getTime()} = ${timeDiff}`);
+        divContent.insertAdjacentHTML('beforeend', `<p>${dumValue}</p><p><span style="font-weight: bold">Idade Gestacional:</span> ${idadeGestacionalSemana} Semana(s) e ${idadeGestacionalDia} Dia(s)</p>`);
+        document.querySelector('.btn').classList.add('bottom-line');
         resultado[0].remove();
         resultado[1].remove();
 
@@ -38,5 +38,5 @@ function calc() {
 }
 
 document.querySelector('button').addEventListener('click', calc);
-document.querySelectorAll('input[type="radio"]')[0].addEventListener('click', showCiclo);
-document.querySelectorAll('input[type="radio"]')[1].addEventListener('click', showCiclo);
+/* document.querySelectorAll('input[type="radio"]')[0].addEventListener('click', showCiclo);
+document.querySelectorAll('input[type="radio"]')[1].addEventListener('click', showCiclo); */
