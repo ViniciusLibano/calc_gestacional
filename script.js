@@ -1,22 +1,21 @@
 var form = document.querySelector('form');
 var formData = new FormData(form);
+var dppResDia;
+var dppResMes;
 
-/* function showCiclo() {
-    let ciclo = document.querySelector('input[type="radio"]');
-    let divCiclo = document.getElementById('cicloM');
-
-    if (ciclo.checked) {
-        divCiclo.style.display = "block";
+function par(n) {
+    if (n % 2 == 0) {
+        return true;
     }
     else {
-        divCiclo.style.display = "none";
+        return false;
     }
-} */
+}
 
 function calc() {
     let resultado = document.querySelectorAll('p');
     let divContent = document.querySelector('main');
-    let dumValue = document.querySelector('input[name="DUM"]').value;
+    var dumValue = document.querySelector('input[name="DUM"]').value;
 
     let dumDate = new Date(dumValue);
     let today = new Date();
@@ -24,6 +23,23 @@ function calc() {
     let diffDays = Math.ceil(timeDiff / (1000*3600*24));
     let idadeGestacionalSemana = Math.floor(diffDays / 7);
     let idadeGestacionalDia = diffDays % 7;
+
+    let dppDtDia = parseInt(dumValue.slice(8));
+    let dppDtMes = parseInt(dumValue.slice(5).slice(0, -3));
+
+    // vou ter que criar uma funcao nova e mais eficiente, if n vai ajudar sao mts variaveis essa logica eh uma merda
+    /*
+    if (dppDtDia + 7 > 31 && par(dppDtMes) - 3 == false && dppDtMes > 3) {
+        console.log(dppDtDia + 7 - 31);
+        console.log(dppDtMes - 3)
+    } else if (dppDtDia + 7 > 30 && par(dppDtMes) - 3 == true && dppDtMes > 3) {
+        console.log(dppDtDia + 7 - 30);
+        console.log(dppDtMes - 3)
+    } else {
+        console.log('dppDtDia');
+        console.log('dppDtMes');
+    }
+    */
 
     if (dumValue.length == 0) {
         window.alert("Data em branco");
@@ -37,6 +53,4 @@ function calc() {
     }
 }
 
-document.querySelector('button').addEventListener('click', calc);
-/* document.querySelectorAll('input[type="radio"]')[0].addEventListener('click', showCiclo);
-document.querySelectorAll('input[type="radio"]')[1].addEventListener('click', showCiclo); */
+//document.querySelector('button').addEventListener('click', idadeDUM);
