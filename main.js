@@ -2,46 +2,47 @@
 
 const formDUM = document.querySelector('form#formDUM');
 const inputDateDUM = document.querySelector('input[name="DUM"]');
+const resultDiv =  document.querySelector('main').children[2];
 
 //FUNCOES
 
-//verifica se o numero eh par ou impar
-function OddEven(n) {
-    if (n % 2 == 0) {
-        return true;
-    }
-    else {
-        return false;
-    }
-}
-
-function diffDate(n) {
-    let nDate = new Date(n);
-    let todayDate = new Date();
-    let diffDays = Math.floor(Math.abs(nDate.getTime() - todayDate.getTime()) / (1000*3600*24));
+function diffDate(x, y) {
+    let xDate = new Date(x);
+    let yDate = new Date(y)
+    let diffDays = Math.floor(Math.abs(xDate.getTime() - yDate.getTime()) / (1000*3600*24));
 
     return diffDays;
 }
 
+function filterDate(n) {
+    let nISO = n.slice(0, -14);
+    let dayDate = parseInt(nISO.slice(8));
+    let monthDate = parseInt(nISO.slice(5).slice(0, -3));
+    let yearDate = parseInt(nISO.slice(0, -6));
+
+    let resultDate = [dayDate, monthDate, yearDate];
+
+    return resultDate;
+}
+
 function idadeDUM() {
     let inputDate =  inputDateDUM.value;
+    let todayDate = new Date();
+    let diffDays = diffDate(inputDate, todayDate);
 
     if (inputDate.length != 0) {
-        let iGestacionalSemana = Math.floor(diffDate(inputDate) / 7);
-        let iGestacionalDia =  diffDate(inputDate) % 7;
+        let iGestacionalSemana = Math.floor(diffDays / 7);
+        let iGestacionalDia =  diffDays % 7;
         let mainBlock =  document.querySelector('main');
-        let resultIdade = `<p><span>Idade Gestacional: </span>${iGestacionalSemana} Semana(s) e ${iGestacionalDia} Dia(s)</p>`;
+        let dppMS = new Date(inputDate);
+        let dpp = new Date(dppMS.getTime() + 24192000000);
+        let dppResult = filterDate(dpp.toISOString());
+        let resultIdade = `<p><span>Idade Gestacional: </span>${iGestacionalSemana} Semana(s) e ${iGestacionalDia} Dia(s)</p> <p><span>Data provavel do parto(DPP):</span> ${dppResult[0]}/${dppResult[1]}/${dppResult[2]}</p>`;
 
-        if (mainBlock.children.length >= 3) {
-            mainBlock.insertAdjacentHTML('beforeend', resultIdade);
-            mainBlock.children[2].remove();
-        }
-        else {
-            mainBlock.insertAdjacentHTML('beforeend', resultIdade);
-        }
+        resultDiv.innerHTML = resultIdade;
     }
     else {
-        window.alert('Data em branco')
+        window.alert('Data Inválida')
     }
 }
 
