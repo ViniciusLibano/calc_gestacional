@@ -33,11 +33,9 @@ function idadeDUM() {
     if (inputDate.length != 0) {
         let iGestacionalSemana = Math.floor(diffDays / 7);
         let iGestacionalDia =  diffDays % 7;
-        let mainBlock =  document.querySelector('main');
         let dppMS = new Date(inputDate);
         let dpp = new Date(dppMS.getTime() + 24192000000);
-        let dppResult = filterDate(dpp.toISOString());
-        let resultIdade = `<p><span>Idade Gestacional: </span>${iGestacionalSemana} Semana(s) e ${iGestacionalDia} Dia(s)</p> <p><span>Data provavel do parto(DPP):</span> ${dppResult[0]}/${dppResult[1]}/${dppResult[2]}</p>`;
+        let resultIdade = `<p id="idadeResult" onclick="copyTXT('idadeResult')"><span>Idade Gestacional: </span>${iGestacionalSemana} Semana(s) e ${iGestacionalDia} Dia(s)</p> <p id="dppResult" onclick="copyTXT('dppResult')"><span>Data provavel do parto(DPP): </span>${dpp.toLocaleDateString()}</p>`;
 
         resultDivDUM.innerHTML = resultIdade;
         resultDivDUM.setAttribute('style', 'border-top: 1px solid #369;');
@@ -46,5 +44,13 @@ function idadeDUM() {
         window.alert('Data Inválida')
     }
 }
+
+function copyTXT(txt) {
+    let e = document.getElementById(`${txt}`);
+    let spanTXT = e.firstChild.innerHTML.length;
+    navigator.clipboard.writeText(e.innerText.slice(spanTXT));
+}
+
+//EVENTS
 
 document.querySelector('button').addEventListener('click', idadeDUM);

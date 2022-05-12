@@ -10,21 +10,43 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #eeeeee;
+    flex-direction: column;
+}
+
+body > * {
+    margin-top: 20px;
+}
+
+body > button {
+    padding: 5px;
+    vertical-align: middle;
+    background-color: #337AB7;
+    color: #FFF;
+    font-weight: bold;
+    border: 2px solid #036;
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+body > button span {
+    margin: 0;
+    padding: 0;
+    width: auto;
 }
 
 .box {
-    margin-top: 2%;
     width: 40vw;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
     border: 2px double #369;
     border-radius: 5px;
     padding: 10px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .box * {
@@ -33,10 +55,6 @@ body {
 
 form {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-self: flex-start;
 }
 
 form > div input[type="date"], form > div input[type="text"], form > div label{
@@ -46,13 +64,18 @@ form > div input[type="date"], form > div input[type="text"], form > div label{
 form > div input[type="date"] {
     padding: 5px;
     width: 97%;
+    font-size: 12pt;
+}
+
+label {
+    font-weight: bold;
+    font-size: 14pt;
 }
 
 
 .btn {
     display: flex;
     justify-content: space-around;
-    
 }
 
 .btn button {
@@ -66,6 +89,7 @@ form > div input[type="date"] {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     cursor: pointer;
+    font-size: 12pt;
 }
 
 .result {
@@ -75,9 +99,23 @@ form > div input[type="date"] {
 
 .result p {
     vertical-align: middle;
-    font-size: 10pt;;
+    font-size: 10pt;
+    cursor: pointer;
 }
 
 .result p span {
     font-weight: bold;
+}
+
+form#formUSG > div:last-child {
+    display: flex;
+}
+
+form#formUSG > div:last-child div {
+    width: 100%;
+}
+
+div#usg div:last-child > div input {
+    padding: 5px;
+    font-size: 12pt;
 }
