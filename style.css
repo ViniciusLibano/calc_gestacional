@@ -12,7 +12,7 @@ body {
     background-color: #eeeeee;
 }
 
-main {
+.box {
     margin-top: 2%;
     width: 40vw;
     display: flex;
@@ -27,7 +27,7 @@ main {
     -o-border-radius: 5px;
 }
 
-main * {
+.box * {
     margin-bottom: 5px;
 }
 

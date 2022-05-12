@@ -2,7 +2,7 @@
 
 const formDUM = document.querySelector('form#formDUM');
 const inputDateDUM = document.querySelector('input[name="DUM"]');
-const resultDiv =  document.querySelector('main').children[2];
+const resultDivDUM =  document.querySelectorAll('div.box')[0].children[2];
 
 //FUNCOES
 
@@ -39,8 +39,8 @@ function idadeDUM() {
         let dppResult = filterDate(dpp.toISOString());
         let resultIdade = `<p><span>Idade Gestacional: </span>${iGestacionalSemana} Semana(s) e ${iGestacionalDia} Dia(s)</p> <p><span>Data provavel do parto(DPP):</span> ${dppResult[0]}/${dppResult[1]}/${dppResult[2]}</p>`;
 
-        resultDiv.innerHTML = resultIdade;
-        resultDiv.setAttribute('style', 'border-top: 1px solid #369;');
+        resultDivDUM.innerHTML = resultIdade;
+        resultDivDUM.setAttribute('style', 'border-top: 1px solid #369;');
     }
     else {
         window.alert('Data Inválida')
