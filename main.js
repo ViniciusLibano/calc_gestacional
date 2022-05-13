@@ -1,10 +1,31 @@
+//mensagem de erro
+const error1 = 'Data Inválida';
+
 //SELECTORS
 
 const formDUM = document.querySelector('form#formDUM');
-const inputDateDUM = document.querySelector('input[name="DUM"]');
-const resultDivDUM =  document.querySelectorAll('div.box')[0].children[2];
+const inputDateDUM = document.querySelector('input[name=DUM]');
+const inputDateUSG = document.querySelector('input[name=USG]');
+const inputSemUSG = document.querySelector('input[name=usgSem]');
+const inputDiaUSG = document.querySelector('input[name=usgDia]');
+const resultDivDUM = document.querySelectorAll('div.box')[0].children[2];
+const resultDivUSG = document.querySelectorAll('div.box')[1].children[2];
 
 //FUNCOES
+function checkDate(date) {
+    if (date.length != 0) {
+        let todayDate = new Date();
+        let inputDate = new Date(date);
+        console.log(inputDate);
+        if (inputDate.getTime() <= todayDate.getTime()) {
+            return true;
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
 
 function diffDate(x, y) {
     let xDate = new Date(x);
@@ -14,34 +35,23 @@ function diffDate(x, y) {
     return diffDays;
 }
 
-function filterDate(n) {
-    let nISO = n.slice(0, -14);
-    let dayDate = parseInt(nISO.slice(8));
-    let monthDate = parseInt(nISO.slice(5).slice(0, -3));
-    let yearDate = parseInt(nISO.slice(0, -6));
-
-    let resultDate = [dayDate, monthDate, yearDate];
-
-    return resultDate;
-}
-
 function idadeDUM() {
     let inputDate =  inputDateDUM.value;
     let todayDate = new Date();
     let diffDays = diffDate(inputDate, todayDate);
 
-    if (inputDate.length != 0) {
+    if (checkDate(inputDate) == true) {
         let iGestacionalSemana = Math.floor(diffDays / 7);
         let iGestacionalDia =  diffDays % 7;
         let dppMS = new Date(inputDate);
         let dpp = new Date(dppMS.getTime() + 24192000000);
-        let resultIdade = `<p id="idadeResult" onclick="copyTXT('idadeResult')"><span>Idade Gestacional: </span>${iGestacionalSemana} Semana(s) e ${iGestacionalDia} Dia(s)</p> <p id="dppResult" onclick="copyTXT('dppResult')"><span>Data provavel do parto(DPP): </span>${dpp.toLocaleDateString()}</p>`;
+        let resultIdade = `<p id="idadeResultDUM" onclick="copyTXT('idadeResultDUM')"><span>Idade Gestacional: </span>${iGestacionalSemana} Semana(s) e ${iGestacionalDia} Dia(s)</p> <p id="dppResultDUM" onclick="copyTXT('dppResultDUM')"><span>Data provavel do parto(DPP): </span>${dpp.toLocaleDateString()}</p>`;
 
         resultDivDUM.innerHTML = resultIdade;
         resultDivDUM.setAttribute('style', 'border-top: 1px solid #369;');
     }
     else {
-        window.alert('Data Inválida')
+        window.alert(error1)
     }
 }
 
@@ -51,6 +61,26 @@ function copyTXT(txt) {
     navigator.clipboard.writeText(e.innerText.slice(spanTXT));
 }
 
+function idadeUSG() {
+    let inputDate = inputDateUSG.value;
+    let todayDate = new Date();
+    let usgDate = new Date(inputDate);
+    let idadeSem = inputSemUSG.value * 86400000 * 7;
+    let idadeDia = inputDiaUSG.value * 86400000;
+
+    if (checkDate(inputDate) == true) {
+
+        let resultDate = (diffDate(inputDate, todayDate) * 86400000) + idadeSem + idadeDia;
+        let resultString = `<p id="idadeResultUSG" onclick="copyTXT('idadeResultUSG')"><span>Idade Gestacional: </span>${Math.floor((resultDate / 86400000) / 7)} Semana(s) e ${Math.floor(resultDate / 86400000) % 7} Dia(s)</p>`;
+
+        resultDivUSG.innerHTML = resultString;
+        resultDivUSG.setAttribute('style', 'border-top: 1px solid #369;');
+    } else {
+        window.alert(error1);
+    }
+}
+
 //EVENTS
 
-document.querySelector('button').addEventListener('click', idadeDUM);
+document.querySelector('button#DUM').addEventListener('click', idadeDUM);
+document.querySelector('button#USG').addEventListener('click', idadeUSG);
